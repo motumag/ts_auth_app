@@ -17,3 +17,58 @@ mkdir my-typescript-project
 cd my-typescript-project
 npm init -y
 ```
+
+### 2. Install Dependencies and compile the using tsc
+
+```bash
+npm install --save-dev typescript @types/node nodemon ts-node
+npx tsc --init
+```
+
+### 3. Now setup the tsconfig.json file with your owun requirement, module or commonjs
+
+```bash
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ES2020",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
+```
+
+### 4. Create Your Project Structure and index.ts file
+
+```bash
+mkdir src
+touch /src/index.ts
+// src/index.ts
+
+const greeting: string = "Hello, TypeScript with ES Modules and Nodemon!";
+console.log(greeting);
+
+
+```
+
+### 5. Update package.json
+
+```bash
+ "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts"
+  },
+```
+
+### 6. Run the app
+
+```bash
+npm run dev
+```
